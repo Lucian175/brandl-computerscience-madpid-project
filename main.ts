@@ -28,13 +28,14 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Boss, function (sprite, otherSpr
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, otherSprite) {
     otherSprite.destroy()
-    projectile.destroy()
+    fireball.destroy()
+    fireball.startEffect(effects.fire)
     info.changeScoreBy(5)
     info.changeLifeBy(1)
     info.startCountdown(15)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
+    fireball = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -55,13 +56,13 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
-    projectile.destroy()
+    fireball.destroy()
     otherSprite.startEffect(effects.fire)
     info.changeScoreBy(1)
     info.startCountdown(5)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
+    fireball = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -87,7 +88,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let Bat2: Sprite = null
 let Bat: Sprite = null
 let Snake: Sprite = null
-let projectile: Sprite = null
+let fireball: Sprite = null
 let Ghost: Sprite = null
 scene.setBackgroundImage(img`
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 d d d d d d d 1 1 1 1 f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f 
@@ -264,7 +265,7 @@ f 7 7 7 7 7 7 7 7 7 7 f . . . .
     Snake.setVelocity(-100, 0)
 })
 forever(function () {
-    music.playMelody("E B C5 A B G A F ", 130)
+    music.playMelody("E B C5 A B G A F ", 145)
 })
 game.onUpdateInterval(1000, function () {
     Bat = sprites.create(img`
