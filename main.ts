@@ -31,6 +31,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
     projectile.destroy()
     info.changeScoreBy(5)
     info.changeLifeBy(1)
+    info.startCountdown(15)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -57,6 +58,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     projectile.destroy()
     otherSprite.startEffect(effects.fire)
     info.changeScoreBy(1)
+    info.startCountdown(5)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -238,6 +240,7 @@ Ghost = sprites.create(img`
 `, SpriteKind.Player)
 controller.moveSprite(Ghost)
 Ghost.setFlag(SpriteFlag.StayInScreen, true)
+info.startCountdown(5)
 game.onUpdateInterval(5000, function () {
     Snake = sprites.create(img`
 . . . c c c c c c . . . . . . . 
