@@ -33,6 +33,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
     info.changeScoreBy(5)
     info.changeLifeBy(1)
     info.startCountdown(15)
+    music.pewPew.play()
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     fireball = sprites.createProjectileFromSprite(img`
@@ -60,6 +61,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     otherSprite.startEffect(effects.fire)
     info.changeScoreBy(1)
     info.startCountdown(5)
+    music.pewPew.play()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     fireball = sprites.createProjectileFromSprite(img`
