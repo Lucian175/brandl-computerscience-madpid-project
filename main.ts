@@ -30,6 +30,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Boss, function (sprite, othe
     otherSprite.destroy()
     projectile.destroy()
     info.changeScoreBy(5)
+    info.changeLifeBy(1)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
@@ -256,7 +257,7 @@ f 7 7 7 7 7 7 7 7 7 7 f . . . .
 . . c 6 1 1 1 1 1 7 6 6 c c . . 
 . . . c c c c c c c c c c . . . 
 `, SpriteKind.Boss)
-    Snake.setPosition(180, Math.randomRange(0, 120))
+    Snake.setPosition(Math.randomRange(0, 160), Math.randomRange(1, 120))
     Snake.setVelocity(-100, 0)
 })
 forever(function () {
